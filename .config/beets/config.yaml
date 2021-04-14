@@ -1,0 +1,23 @@
+directory: /media/music
+import:
+    move: yes
+    write: yes
+    log: beetslog.txt
+art_filename: albumart
+plugins: bpd ftintitle lastgenre hook
+hook: 
+  hooks:
+    - event: item-imported
+      command: mpc update && echo "Updated MPD"
+ftintitle:
+    auto: true
+lastgenre:
+    canonical: yes
+    fallback: "Unknown"
+pluginpath: ~/beets/myplugins
+ui:
+    color: yes
+paths:
+    default: $artist/$album/$track $title
+    singleton: $artist/singles/$title
+    comp: /"Various Artists"/$track $title

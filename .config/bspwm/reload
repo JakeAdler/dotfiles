@@ -1,0 +1,19 @@
+#!/bin/bash
+
+. $HOME/.profile
+
+WAIT_FOR=("sxhkd" "polybar")
+
+for prg in $WAIT_FOR
+do
+    # Terminate already running bar instances
+    killall -q $prg
+
+    # Wait until the processes have been shut down
+    while pgrep -u $UID -x $prg >/dev/null; do sleep 1; done
+
+    $XDG_CONFIG_HOME/$prg/launch &
+done
+
+bspc wm -r
+

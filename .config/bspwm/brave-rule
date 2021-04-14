@@ -1,0 +1,11 @@
+#!/bin/bash
+
+wid=$1
+class=$2
+instance=$3
+
+role=$(xprop -id "$wid" WM_WINDOW_ROLE | awk '{print $3}' | sed 's/"//g')
+name=$(xprop -id "$wid" WM_NAME | awk '{print $3}' | sed 's/"//g')
+
+[[ "$name" = "Picture" ]]  && echo "state=floating rectangle=800x600+0+0"
+[[ "$instance" = "brave-browser"* ]] && [[ "$role" = "pop-up" ]] && echo "state=floating center=true rectangle=800x600+0+0"

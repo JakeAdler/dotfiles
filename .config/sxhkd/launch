@@ -1,0 +1,10 @@
+#!/bin/sh
+
+SXHKD_BASE_CONFIG="$XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+BSPWM_SXHKD_CONFIG="$XDG_CONFIG_HOME/sxhkd/bspwm-sxhkdrc"
+
+. "$HOME/.profile"
+
+[ "$WM" = "bspwm" ] \
+    && env SXHKD_SHELL="bash" sxhkd -c "$SXHKD_BASE_CONFIG" "$BSPWM_SXHKD_CONFIG" \
+    || env SXHKD_SHELL="bash" sxhkd -c "$SXHKD_BASE_CONFIG" 
