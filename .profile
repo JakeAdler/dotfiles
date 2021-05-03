@@ -2,9 +2,6 @@
 
 ### Environment Variables ###{{{
 
-# PATH
-export PATH="$PATH:$HOME/.local/bin:$HOME/.local/scripts"
-
 # Programs
 
 export TERMINAL="kitty"
@@ -42,12 +39,18 @@ export GOPATH="$XDG_DATA_HOME/go"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 export NODE_REPL_HISTORY="$XDG_CACHE_HOME/.node_repl_history"
 export MPD_HOST="$XDG_DATA_HOME/mpd/socket"
-export XAUTHORITY="$XDG_CONFIG_HOME/.Xauthority"
+export XAUTHORITY="$XDG_CONFIG_HOME/X11/Xauthority"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg/"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
 export MBSYNCRC="$XDG_CONFIG_HOME/isync/mbsyncrc"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export GPG_TTY=$(tty)
+
+# PATH
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/scripts:$GOPATH/bin"
+
 #}}}
 
 ### Aliases ###{{{
@@ -61,8 +64,10 @@ alias yarn="yarn --no-default-rc"
 alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
 alias polybar="$XDG_CONFIG_HOME/polybar/launch"
 alias sxhkd="$XDG_CONFIG_HOME/sxhkd/launch"
+alias jackd="$XDG_CONFIG_HOME/jack/launch"
 alias gparted="devour sudo gparted"
 alias mpd="mpd --no-daemon"
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 
 # Renames
 alias mail="aerc"
@@ -81,6 +86,10 @@ alias ..="cd .."
 alias gcm="git commit -m"
 alias gs="git status"
 alias ga="git add"
+
+# Misc
+alias show_album_art="feh /tmp/kunst.jpg"
+
 #}}}
 
 ### Functions ###{{{
@@ -97,4 +106,14 @@ g() {
 }
 #}}}
 
-[ "$0" = "-$(basename $(echo "$SHELL"))" ] && startx # If login shell, run startrx
+### Startup applications ###
+
+if [ "$0" = "-$(basename $SHELL)" ]; then
+    # Startup programs (only once per login)
+
+    # Music player daemon 
+    mpd &
+
+    # Run startx on login
+    startx 
+fi

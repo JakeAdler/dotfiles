@@ -1,5 +1,8 @@
 require("tmp")
 
+vim.cmd 'colorscheme onebuddy'
+vim.cmd 'highlight Normal guibg=NONE'
+
 local opt = vim.opt
 
 opt.pumblend = 17 -- Cool floating window popup menu for completion on command line
@@ -46,18 +49,8 @@ opt.shada          = { "!", "'1000", "<50", "s10", "h" }
 opt.mouse          = 'n'
 opt.clipboard      = "unnamedplus"
 
-opt.formatoptions = opt.formatoptions - 'a' - 't' + 'c' + 'q' + 'o' + 'r'
-                    - 'a'     -- Auto formatting is BAD.
-                    - 't'     -- Don't auto format my code. I got linters for that.
-                    + 'c'     -- In general, I like it when comments respect textwidth
-                    + 'q'     -- Allow formatting comments w/ gq
-                    - 'o'     -- O and o, don't continue comments
-                    + 'r'     -- But do continue when pressing enter.
-                    + 'n'     -- Indent past the formatlistpat, not underneath it.
-                    + 'j'     -- Auto-remove comments if possible.
-                    - '2'     -- I'm not in gradeschool anymore
-
 opt.joinspaces = false         -- Two spaces and grade school, we're done
 
+vim.cmd 'autocmd FileType markdown setlocal wrap linebreak nolist'
 vim.cmd 'autocmd TermOpen * setlocal nonumber norelativenumber nocursorline'
 vim.cmd 'set shortmess+=c'

@@ -4,16 +4,16 @@ import:
     write: yes
     log: beetslog.txt
 art_filename: albumart
-plugins: bpd ftintitle lastgenre hook
-hook: 
-  hooks:
-    - event: item-imported
-      command: mpc update && echo "Updated MPD"
+plugins: bpd ftintitle lastgenre hook edit
 ftintitle:
     auto: true
 lastgenre:
     canonical: yes
     fallback: "Unknown"
+hook: 
+  hooks:
+    - event: item-imported
+      command: mpc update && echo "Updated MPD"
 pluginpath: ~/beets/myplugins
 ui:
     color: yes

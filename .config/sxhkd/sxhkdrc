@@ -15,7 +15,7 @@ alt + d
 	rofi -combi-mode -show run
 
 alt + m
-    sp ncmpcpp
+    sp music
     
 
 XF86AudioPlay
