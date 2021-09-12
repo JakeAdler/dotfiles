@@ -1,5 +1,3 @@
-require("tmp")
-
 vim.cmd 'colorscheme onebuddy'
 vim.cmd 'highlight Normal guibg=NONE'
 
@@ -23,7 +21,6 @@ opt.splitbelow     = true  -- Prefer windows splitting to the bottom
 opt.updatetime     = 500   -- Make updates happen faster
 opt.scrolloff      = 10    -- Make it so there are always ten lines below my cursor
 opt.termguicolors  = true
-opt.t_Co           = "256"
 opt.signcolumn     = "yes"
 
 -- Tabs
@@ -47,7 +44,6 @@ opt.swapfile       = false -- Living on the edge
 opt.shada          = { "!", "'1000", "<50", "s10", "h" }
 
 opt.mouse          = 'n'
-opt.clipboard      = "unnamedplus"
 
 opt.joinspaces = false         -- Two spaces and grade school, we're done
 

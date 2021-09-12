@@ -56,4 +56,7 @@ map_key('n',    '<C-j>',         "<cmd>lua require('lspsaga.action').smart_scrol
 map_key('n',    '<C-k>',         "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", noremap_silent)
 
 -- Misc
-map_key('n',    '<leader>b',    ':exe ":silent !$BROWSER %"<CR>',                   noremap_silent)
+map_key('n',    '<leader>b',    ':exe ":silent !$BROWSER %"<CR>',           noremap_silent)
+map_key('n',    '<leader>tm',   ':TableModeToggle<CR>',                    noremap_silent)
+map_key('v',    '<leader>y',        '"+y',                    noremap_silent)
+map_key('n',    '<leader>p',        '"+p',                    noremap_silent)

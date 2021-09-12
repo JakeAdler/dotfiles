@@ -45,7 +45,7 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
 export MBSYNCRC="$XDG_CONFIG_HOME/isync/mbsyncrc"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export TREE_SITTER_DIR="$XDG_CONFIG_HOME/tree-sitter"
 export GPG_TTY=$(tty)
 
 # PATH
@@ -58,11 +58,16 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/.local/scripts:$GOPATH/bin"
 # Configuration (same name)
 alias irssi="irssi --config='$XDG_CONFIG_HOME/irssi/config' --home='$XDG_DATA_HOME/irssi'"
 alias picom="picom --experimental-backends --config $XDG_CONFIG_HOME/picom/picom.conf"
-alias ls="ls --color=always --group-directories-first -w 60 -AHXhp"
 alias spotdl="spotdl --ignore-ffmpeg-version -o $HOME/dl/music"
-alias yarn="yarn --no-default-rc"
+alias yarn="yarn --use-yarnrc '$XDG_CONFIG_HOME/yarn/config'"
 alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
 alias polybar="$XDG_CONFIG_HOME/polybar/launch"
+alias tc="trash-put"
+alias ls="ls --color=always --group-directories-first -AHXhp -w 60"
+alias rm="echo 'Use rip instead'"
+alias rip="rip --graveyard ~/.local/share/Trash"
+
+
 alias sxhkd="$XDG_CONFIG_HOME/sxhkd/launch"
 alias jackd="$XDG_CONFIG_HOME/jack/launch"
 alias gparted="devour sudo gparted"
@@ -90,6 +95,10 @@ alias ga="git add"
 # Misc
 alias show_album_art="feh /tmp/kunst.jpg"
 
+# Conditional
+# [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
+
 #}}}
 
 ### Functions ###{{{
@@ -111,8 +120,10 @@ g() {
 if [ "$0" = "-$(basename $SHELL)" ]; then
     # Startup programs (only once per login)
 
-    # Music player daemon 
     mpd &
+
+    # ssh-agent
+    eval `ssh-agent -s`
 
     # Run startx on login
     startx 

@@ -3,7 +3,7 @@
 
 # Terminal
 alt + Return
-	$TERMINAL
+	kitty -1 --listen-on unix:/tmp/kitty-sock
 
 alt + w
 	$BROWSER
@@ -16,7 +16,9 @@ alt + d
 
 alt + m
     sp music
-    
+
+alt + n
+    sp notes
 
 XF86AudioPlay
 	mpc toggle

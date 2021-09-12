@@ -4,7 +4,9 @@ import:
     write: yes
     log: beetslog.txt
 art_filename: albumart
-plugins: bpd ftintitle lastgenre hook edit
+plugins: bpd ftintitle lastgenre hook edit embedart fetchart duplicates
+fetchart:
+    auto: yes
 ftintitle:
     auto: true
 lastgenre:
