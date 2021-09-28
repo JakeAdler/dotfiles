@@ -3,7 +3,7 @@ local expr = { expr = true }
 local noremap_silent = { noremap = true, silent = true }
 
 local map_key = vim.api.nvim_set_keymap
-
+  
 
 -- Autocompletion
 map_key("i",    "<Tab>",        "v:lua.tab_complete()",                     expr)
@@ -22,7 +22,7 @@ map_key('n',    '<Space>',      '<NOP>',                                    nore
 map_key('i',    'jk',           '<ESC>',                                    noremap_silent)
 
 -- Tree
-map_key('n',    '<leader>l',    ':NvimTreeToggle<CR>',                      noremap_silent)
+map_key('n',    '<leader>l',    ':NERDTreeToggle<CR>',                      noremap_silent)
 
 -- Telescope
 map_key('n',    '<leader>/',    ':Telescope live_grep<CR>',                 noremap_silent)
@@ -37,8 +37,6 @@ map_key("n",    "<F1>",         '<cmd> lua PrevColor()<CR>',             noremap
 map_key("n",    "<F2>",         '<cmd> lua NextColor()<CR>',             noremap_silent)
 
 -- Lsp
-map_key('n',    '<leader>gd',   '<cmd>lua vim.lsp.buf.definition()<CR>',     noremap_silent)
-map_key('n',    '<leader>gd',   '<cmd>lua vim.lsp.buf.definition()<CR>',     noremap_silent)
 map_key('n',    '<leader>gd ',  '<cmd>lua vim.lsp.buf.definition()<CR>',     noremap_silent)
 map_key('n',    '<leader>gD ',  '<cmd>lua vim.lsp.buf.declaration()<CR>',    noremap_silent)
 map_key('n',    '<leader>gr ',  '<cmd>lua vim.lsp.buf.references()<CR>',     noremap_silent)

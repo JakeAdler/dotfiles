@@ -50,3 +50,4 @@ opt.joinspaces = false         -- Two spaces and grade school, we're done
 vim.cmd 'autocmd FileType markdown setlocal wrap linebreak nolist'
 vim.cmd 'autocmd TermOpen * setlocal nonumber norelativenumber nocursorline'
 vim.cmd 'set shortmess+=c'
+vim.cmd 'set clipboard+=unnamedplus' 
