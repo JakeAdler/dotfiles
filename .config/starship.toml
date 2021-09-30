@@ -1,0 +1,51 @@
+format = """
+$python
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$line_break\
+$status\
+${custom.local_username_hostname}\
+${custom.remote_username}${custom.remote_at_sign}${custom.remote_hostname}\
+$shell\
+$character"""
+
+[python]
+python_binary = [ "./venv/bin/python" ]
+
+[hostname]
+ssh_only = false
+format = '[$hostname]($style)\] '
+
+[username]
+show_always = true
+format = '\[[$user]($style)@'
+style_user = "bold red" 
+
+[custom.local_username_hostname]
+command = 'echo -n "[$(whoami)@$(cat /etc/hostname)]" | lolcat -f -t -p 1 -F .2 -S 3 -'
+when = """ test $(cat /etc/hostname) = "arch" """
+
+[custom.remote_username]
+command = 'echo -n "[$(whoami)"'
+when = """ test $(cat /etc/hostname) != "arch" """
+style="bold blue"
+
+[custom.remote_at_sign]
+command = 'echo -n "\b@"'
+when = """ test $(cat /etc/hostname) != "arch" """
+style="bold white"
+
+[custom.remote_hostname]
+command = 'echo "\b$(cat /etc/hostname)]"'
+when = """ test $(cat /etc/hostname) != "arch" """
+style="bold yellow"
+
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+
