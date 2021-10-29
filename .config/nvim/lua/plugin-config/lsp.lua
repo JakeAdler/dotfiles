@@ -1,20 +1,21 @@
--- variables{{{
+local coq = require "coq"
+
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        virtual_text = false,
-    }
+vim.lsp.diagnostic.on_publish_diagnostics,
+{
+    virtual_text = false,
+}
 )
 
 vim.fn.sign_define("LspDiagnosticsSignError",
-                   {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"})
+{texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"})
 vim.fn.sign_define("LspDiagnosticsSignWarning",
-                   {texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning"})
+{texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning"})
 vim.fn.sign_define("LspDiagnosticsSignHint",
-                   {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"})
+{texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"})
 vim.fn.sign_define("LspDiagnosticsSignInformation",
-                   {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"})
+{texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -30,106 +31,92 @@ local on_attach = function(client, bufnr)
     if client.resolved_capabilities.document_highlight then
 
         vim.api.nvim_exec([[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
-      hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
-      augroup lsp_document_highlight
+        hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
+        hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
+        hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
+        augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
+        augroup END
+        ]], false)
 
     end
 
 end
 
---}}}
+local lsp_installer = require("nvim-lsp-installer")
 
--- TypeScript/JavaScript{{{
+lsp_installer.on_server_ready(function(server)
+    -- (optional) customize the options passed to the server
+    -- if server.name == "tsserver" then
+    --     opts.root_dir = function() ... end
+    -- end
+    if server.name == "jsonls" then
 
--- npm i -g typescript typescript-language-server
+--{{{
 
-
-require'lspconfig'.tsserver.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
---}}}
-
--- JSON {{{
--- npm i -g vscode-langservers-extracted
-
-require'lspconfig'.jsonls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = {"json", "jsonc"},
-    settings = {
-        json = {
-            -- Schemas https://www.schemastore.org
-            schemas = {
-                {
-                    fileMatch = {"package.json"},
-                    url = "https://json.schemastore.org/package.json"
-                },
-                {
-                    fileMatch = {"tsconfig*.json"},
-                    url = "https://json.schemastore.org/tsconfig.json"
-                },
-                {
-                    fileMatch = {
-                        ".prettierrc",
-                        ".prettierrc.json",
-                        "prettier.config.json"
-                    },
-                    url = "https://json.schemastore.org/prettierrc.json"
-                },
-                {
-                    fileMatch = {".eslintrc", ".eslintrc.json"},
-                    url = "https://json.schemastore.org/eslintrc.json"
-                },
-                {
-                    fileMatch = {".babelrc", ".babelrc.json", "babel.config.json"},
-                    url = "https://json.schemastore.org/babelrc.json"
-                },
-                {
-                    fileMatch = {"lerna.json"},
-                    url = "https://json.schemastore.org/lerna.json"
-                },
-                {
-                    fileMatch = {"now.json", "vercel.json"},
-                    url = "https://json.schemastore.org/now.json"
-                },
-                {
-                    fileMatch = {
-                        ".stylelintrc",
-                        ".stylelintrc.json",
-                        "stylelint.config.json"
-                    },
-                    url = "http://json.schemastore.org/stylelintrc.json"
+        server:setup((coq.lsp_ensure_capabilities {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = {"json", "jsonc"},
+            settings = {
+                json = {
+                    -- schemas https://www.schemastore.org
+                    schemas = {
+                        {
+                            filematch = {"package.json"},
+                            url = "https://json.schemastore.org/package.json"
+                        },
+                        {
+                            filematch = {"tsconfig*.json"},
+                            url = "https://json.schemastore.org/tsconfig.json"
+                        },
+                        {
+                            filematch = {
+                                ".prettierrc",
+                                ".prettierrc.json",
+                                "prettier.config.json"
+                            },
+                            url = "https://json.schemastore.org/prettierrc.json"
+                        },
+                        {
+                            filematch = {".eslintrc", ".eslintrc.json"},
+                            url = "https://json.schemastore.org/eslintrc.json"
+                        },
+                        {
+                            filematch = {".babelrc", ".babelrc.json", "babel.config.json"},
+                            url = "https://json.schemastore.org/babelrc.json"
+                        },
+                        {
+                            filematch = {"lerna.json"},
+                            url = "https://json.schemastore.org/lerna.json"
+                        },
+                        {
+                            filematch = {"now.json", "vercel.json"},
+                            url = "https://json.schemastore.org/now.json"
+                        },
+                        {
+                            filematch = {
+                                ".stylelintrc",
+                                ".stylelintrc.json",
+                                "stylelint.config.json"
+                            },
+                            url = "http://json.schemastore.org/stylelintrc.json"
+                        }
+                    }
                 }
             }
-        }
-    }
-}--}}}
-
--- CSS{{{
-
--- npm i -g vscode-langservers-extracted
-
-require'lspconfig'.cssls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
+        }))
 --}}}
 
--- HTML{{{
+    else
+        server:setup(coq.lsp_ensure_capabilities {
+            on_attach = on_attach,
+            capabilities = capabilities
+        })
+    end
 
---npm i -g vscode-langservers-extracted
-
-require'lspconfig'.html.setup {
-  capabilities = capabilities,
-  on_attach = on_attach
-}
---}}}
+    -- this setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+    vim.cmd [[ do user lspattachbuffers ]]
+end)

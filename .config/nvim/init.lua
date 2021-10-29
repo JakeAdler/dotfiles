@@ -1,5 +1,4 @@
-vim.g.mapleader = ' '
-
-require('plugins');
-require('settings');
-require('mappings');
+require('settings')
+require('plugins')
+require('mappings')
+require('plugin-config')

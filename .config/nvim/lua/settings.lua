@@ -1,7 +1,10 @@
-vim.cmd 'colorscheme onebuddy'
+require('colorbuddy').colorscheme('onebuddy')
 vim.cmd 'highlight Normal guibg=NONE'
+vim.cmd 'set completeopt=menu,menuone,noselect'
+vim.cmd 'let g:coq_settings = { "auto_start": "shut-up" }'
 
 local opt = vim.opt
+
 
 opt.pumblend = 17 -- Cool floating window popup menu for completion on command line
 
@@ -49,5 +52,6 @@ opt.joinspaces = false         -- Two spaces and grade school, we're done
 
 vim.cmd 'autocmd FileType markdown setlocal wrap linebreak nolist'
 vim.cmd 'autocmd TermOpen * setlocal nonumber norelativenumber nocursorline'
+vim.cmd 'autocmd FileType floaterm nnoremap <silent> <buffer> <esc> :FloatermToggle<CR>'
 vim.cmd 'set shortmess+=c'
-vim.cmd 'set clipboard+=unnamedplus' 
+vim.cmd 'set clipboard+=unnamedplus'

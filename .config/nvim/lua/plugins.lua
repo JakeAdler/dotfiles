@@ -1,40 +1,47 @@
-require('packer').startup(function()
+require('packer').startup(function(use)
+	use 'wbthomason/packer.nvim'
+	use 'neovim/nvim-lspconfig'
+	use 'tamago324/nlsp-settings.nvim'
+	use 'williamboman/nvim-lsp-installer'
 
-  use 'wbthomason/packer.nvim'
+    use {'ms-jpq/coq_nvim', branch ='coq' }
+    use {'ms-jpq/coq.artifacts', branch= 'artifacts' }
+    use { 'ms-jpq/coq.thirdparty', branch = '3p' }
 
-  use 'neovim/nvim-lsp'
-  use 'neovim/nvim-lspconfig'
+	use 'nvim-lua/popup.nvim'
+	use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim'
 
-  use 'hrsh7th/nvim-compe'
-  use 'hrsh7th/vim-vsnip'
+	use 'tami5/lspsaga.nvim'
+    use 'prettier/vim-prettier'
+    use 'voldikss/vim-floaterm'
+    use 'akinsho/toggleterm.nvim'
 
-  use 'nvim-treesitter/nvim-treesitter'
+	use 'tjdevries/colorbuddy.vim'
+    use 'Th3Whit3Wolf/onebuddy'
+	use 'tjdevries/gruvbuddy.nvim'
 
-  use 'windwp/nvim-ts-autotag'
+	use {
+		'windwp/nvim-autopairs',
+        config = function() require('nvim-autopairs').setup{} end
+	}
 
-  use 'preservim/nerdtree'
+	use 'nvim-treesitter/nvim-treesitter'
 
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = 'kyazdani42/nvim-web-devicons'
+	}
 
+	use 'lewis6991/gitsigns.nvim'
 
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-surround'
-  use {'andymass/vim-matchup', event = 'VimEnter'}
+	use {
+		'numToStr/Comment.nvim',
+		config = function() require('Comment').setup {} end
+	}
 
-  use 'glepnir/galaxyline.nvim'
-  use 'kyazdani42/nvim-web-devicons'
-
-  use 'tjdevries/colorbuddy.vim'
-  use 'Th3Whit3Wolf/onebuddy'
-
+	use 'kyazdani42/nvim-web-devicons'
+	use 'nvim-lualine/lualine.nvim'
 
 end)
-
-require("plugin-config.lsp")
-require("plugin-config.compe")
-require("plugin-config.nerdtree")
-require("plugin-config.statusline")
-
-require'nvim-treesitter.configs'.setup { autotag = { enable = true } }
 
