@@ -98,10 +98,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jake/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
   },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/jake/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/jake/.local/share/nvim/site/pack/packer/start/lualine.nvim"
@@ -122,6 +118,10 @@ _G.packer_plugins = {
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/jake/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-lsputils"] = {
+    loaded = true,
+    path = "/home/jake/.local/share/nvim/site/pack/packer/start/nvim-lsputils"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -146,6 +146,10 @@ _G.packer_plugins = {
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/jake/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  popfix = {
+    loaded = true,
+    path = "/home/jake/.local/share/nvim/site/pack/packer/start/popfix"
   },
   ["popup.nvim"] = {
     loaded = true,

@@ -22,14 +22,7 @@ _G.smart_format = function ()
     local ft = vim.bo.filetype
 
     if ft == "typescriptreact" or ft == "javascriptreact" or ft == "javascript" or ft == "typescript" then
-        local exit_code = (os.execute("command -v prettierd") / 256)
-        if (exit_code == 1) then
-            print("prettierd is not installed!")
-            return
-        else
-            vim.api.nvim_command('%!prettierd %')
-            return
-        end
+        vim.api.nvim_command('PrettierAsync')
     else
         vim.api.nvim_command('lua vim.lsp.buf.formatting()')
     end

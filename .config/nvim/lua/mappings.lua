@@ -21,13 +21,12 @@ map{'n', '?', '<cmd>try | execute("Telescope git_files") | catch | execute("Tele
 map{'n', './', '<cmd>Telescope current_buffer_fuzzy_find<CR>'}
 
 -- LSP
-map{'n', '<space>gd', '<cmd>lua vim.lsp.buf.definition()<CR>'}
-map{'n', '<space>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>'}
-map{'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>'}
-map{'n', '[d', '<cmd>Lspsaga diagnosticjump_prev<CR>'}
-map{'n', ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>'}
-map{'n', '<space>k', '<cmd>Lspsaga hover_doc<CR>'}
-map{'n', '<space>e', '<cmd>Lspsaga show_line_diagnostics<CR>'}
-map{'n', '<space>fa', '<cmd>Lspsaga lsp_finder<CR>'}
-map{'n', '<space>rn', '<cmd>Lspsaga rename<CR>'}
-map{'n', '<space>ca', '<cmd>Lspsaga code_action<CR>'}
+map{'n', '<space>gd',   '<cmd>lua vim.lsp.buf.definition()<CR>'}
+map{'n', '<space>gi',   '<cmd>lua vim.lsp.buf.implementation()<CR>'}
+map{'n', 'gr',          '<cmd>lua vim.lsp.buf.references()<CR>'}
+map{'n', '[d',          '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'}
+map{'n', ']d',          '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'}
+map{'n', '<space>k',    '<cmd>lua vim.lsp.buf.hover()<CR>'}
+map{'n', '<space>e',    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'}
+map{'n', '<space>rn',   '<cmd>lua vim.lsp.bunf.rename()<CR>'}
+map{'n', '<space>ca',   '<cmd>lua vim.lsp.buf.code_action()<CR>'}

@@ -1,5 +1,6 @@
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+
 	use 'neovim/nvim-lspconfig'
 	use 'tamago324/nlsp-settings.nvim'
 	use 'williamboman/nvim-lsp-installer'
@@ -12,7 +13,8 @@ require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
 
-	use 'tami5/lspsaga.nvim'
+    use 'RishabhRD/popfix'
+    use 'RishabhRD/nvim-lsputils'
     use 'prettier/vim-prettier'
     use 'voldikss/vim-floaterm'
     use 'akinsho/toggleterm.nvim'
@@ -20,6 +22,7 @@ require('packer').startup(function(use)
 	use 'tjdevries/colorbuddy.vim'
     use 'Th3Whit3Wolf/onebuddy'
 	use 'tjdevries/gruvbuddy.nvim'
+    use 'prettier/vim-prettier'
 
 	use {
 		'windwp/nvim-autopairs',
