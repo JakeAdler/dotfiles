@@ -15,7 +15,6 @@ require('packer').startup(function(use)
 
     use 'RishabhRD/popfix'
     use 'RishabhRD/nvim-lsputils'
-    use 'prettier/vim-prettier'
     use 'voldikss/vim-floaterm'
     use 'akinsho/toggleterm.nvim'
 
@@ -28,6 +27,9 @@ require('packer').startup(function(use)
 		'windwp/nvim-autopairs',
         config = function() require('nvim-autopairs').setup{} end
 	}
+
+
+    use 'alvan/vim-closetag'
 
 	use 'nvim-treesitter/nvim-treesitter'
 

@@ -8,6 +8,8 @@ local opt = vim.opt
 
 opt.pumblend = 17 -- Cool floating window popup menu for completion on command line
 
+vim.cmd 'let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.jsx,*.tsx"'
+
 opt.showmode       = false
 opt.showcmd        = true
 opt.cmdheight      = 1     -- Height of the command bar
