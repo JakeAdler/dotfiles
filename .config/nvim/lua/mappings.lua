@@ -28,5 +28,5 @@ map{'n', '[d',          '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'}
 map{'n', ']d',          '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'}
 map{'n', '<space>k',    '<cmd>lua vim.lsp.buf.hover()<CR>'}
 map{'n', '<space>e',    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'}
-map{'n', '<space>rn',   '<cmd>lua vim.lsp.bunf.rename()<CR>'}
+map{'n', '<space>rn',   '<cmd>lua vim.lsp.buf.rename()<CR>'}
 map{'n', '<space>ca',   '<cmd>lua vim.lsp.buf.code_action()<CR>'}
