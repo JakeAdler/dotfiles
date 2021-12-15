@@ -10,10 +10,14 @@ map{'n', '<Esc>', '<cmd>noh<CR>', { noremap = false}}
 map{'n', '<C-j>', '<C-w>j'}
 map{'n', '<C-k>', '<C-w>k'}
 map{'n', '<space>f', '<cmd>lua smart_format()<CR>'}
+map{'n', '<C-h>', ':lua require("harpoon.mark").add_file()<CR>'}
+map{'n', '<C-l>', ':lua require("harpoon.ui").toggle_quick_menu()<CR>'}
+map{'n', '<gt>', ':lua require("harpoon.ui").nav_next()<CR>'}
+map{'n', '<lt>', ':lua require("harpoon.ui").nav_prev()<CR>'}
+
 
 -- Tree
 map{'n', '<space>l', ':NvimTreeToggle<CR>'}
-
 
 -- Telescope
 map{'n', '<space>/', ':Telescope live_grep<CR>'}

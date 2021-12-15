@@ -1,7 +1,7 @@
 require('colorbuddy').colorscheme('onebuddy')
 vim.cmd 'highlight Normal guibg=NONE'
 vim.cmd 'set completeopt=menu,menuone,noselect'
-vim.cmd 'let g:coq_settings = { "auto_start": "shut-up" }'
+-- vim.cmd 'let g:coq_settings = { "auto_start": "shut-up" }'
 
 local opt = vim.opt
 
