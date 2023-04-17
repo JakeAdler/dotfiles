@@ -1,4 +1,8 @@
-
+require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+  }
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -41,10 +45,7 @@ vim.fn.sign_define(
 )
 
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-)
-
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -56,20 +57,16 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 local on_attach = function(client, bufnr)
-    if client.resolved_capabilities.document_highlight then
-
         vim.api.nvim_exec([[
             hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
             hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
             hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
             augroup lsp_document_highlight
             autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
+                autocmd CursorHold <buffer> lua vim.diagnostic.open_float()
                 autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
             augroup END
         ]], false)
-
-    end
 
 end
 

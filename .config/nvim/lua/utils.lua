@@ -21,7 +21,7 @@ end
 _G.smart_format = function ()
     local ft = vim.bo.filetype
 
-    if ft == "typescriptreact" or ft == "javascriptreact" or ft == "javascript" or ft == "typescript" then
+    if ft == "typescriptreact" or ft == "javascriptreact" or ft == "javascript" or ft == "typescript" or ft == "scss" or ft == "css" or ft == "json" then
         vim.api.nvim_command('PrettierAsync')
     else
         vim.api.nvim_command('lua vim.lsp.buf.formatting()')

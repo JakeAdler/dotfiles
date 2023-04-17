@@ -15,12 +15,27 @@
               i = cmp.mapping.abort(),
               c = cmp.mapping.close(),
           }),
-          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert})),
+          -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          -- ['<Tab>'] = cmp.mapping(function(fallback)
+          --     if cmp.visible() then
+          --       cmp.select_next_item()
+          --     elseif require('luasnip').expand_or_jumpable() then
+          --       vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+          --     elseif vim.b._copilot_suggestion ~= nil then
+          --       vim.fn.feedkeys(vim.api.nvim_replace_termcodes(vim.fn['copilot#Accept'](), true, true, true), '')
+          --     else
+          --       fallback()
+          --     end
+          --   end, {
+          --     'i',
+          --     's',
+          --   }),
       },
       sources = cmp.config.sources(
         {
           { name = 'nvim_lsp' },
+          { name = 'copilot' },
           { name = 'vsnip' }, -- For vsnip users.
         },
         {

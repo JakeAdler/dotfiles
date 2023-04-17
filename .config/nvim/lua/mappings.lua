@@ -4,7 +4,6 @@ local utils = require('utils')
 
 local map = utils.map
 
-
 -- General
 map{'n', '<Esc>', '<cmd>noh<CR>', { noremap = false}}
 map{'n', '<C-j>', '<C-w>j'}
@@ -28,9 +27,18 @@ map{'n', './', '<cmd>Telescope current_buffer_fuzzy_find<CR>'}
 map{'n', '<space>gd',   '<cmd>lua vim.lsp.buf.definition()<CR>'}
 map{'n', '<space>gi',   '<cmd>lua vim.lsp.buf.implementation()<CR>'}
 map{'n', 'gr',          '<cmd>lua vim.lsp.buf.references()<CR>'}
-map{'n', '[d',          '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'}
-map{'n', ']d',          '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'}
+map{'n', '[d',          '<cmd>lua vim.diagnostic.goto_prev()<CR>'}
+map{'n', ']d',          '<cmd>lua vim.diagnostic.goto_next()<CR>'}
 map{'n', '<space>k',    '<cmd>lua vim.lsp.buf.hover()<CR>'}
-map{'n', '<space>e',    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'}
+map{'n', '<space>e',    '<cmd>lua vim.diagnostic.open_float()<CR>'}
 map{'n', '<space>rn',   '<cmd>lua vim.lsp.buf.rename()<CR>'}
 map{'n', '<space>ca',   '<cmd>lua vim.lsp.buf.code_action()<CR>'}
+
+map{'n', '<space>p',   ':split | terminal<CR>'}
+map{'n', '<space>c',   ':new term://'}
+
+map{'t', '<ESC>', [[<C-\><C-n>]] }
+map{'t', '<C-d>', [[<C-\><C-d>]] }
+
+vim.cmd 'imap <silent><script><expr> <S-Tab> copilot#Accept("<CR>")'
+vim.cmd 'let g:copilot_no_tab_map = v:true'

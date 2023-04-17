@@ -1,6 +1,9 @@
+vim.cmd [[packadd packer.nvim]]
+
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
+	use 'nvim-treesitter/nvim-treesitter'
 	use 'neovim/nvim-lspconfig'
 	use 'tamago324/nlsp-settings.nvim'
 	use 'williamboman/nvim-lsp-installer'
@@ -21,7 +24,6 @@ require('packer').startup(function(use)
     use 'RishabhRD/popfix'
     use 'RishabhRD/nvim-lsputils'
     use 'voldikss/vim-floaterm'
-    use 'akinsho/toggleterm.nvim'
 
 	use 'tjdevries/colorbuddy.vim'
     use 'Th3Whit3Wolf/onebuddy'
@@ -32,11 +34,7 @@ require('packer').startup(function(use)
 		'windwp/nvim-autopairs',
         config = function() require('nvim-autopairs').setup{} end
 	}
-
-
     use 'alvan/vim-closetag'
-
-	use 'nvim-treesitter/nvim-treesitter'
 
 	use {
 		'kyazdani42/nvim-tree.lua',
