@@ -1,7 +1,9 @@
-require('colorbuddy').colorscheme('onebuddy')
+-- require('colorbuddy').colorscheme('snazzybuddy')
+vim.cmd("colorscheme onedark")
 vim.cmd 'highlight Normal guibg=NONE'
 vim.cmd 'set completeopt=menu,menuone,noselect'
 -- vim.cmd 'let g:coq_settings = { "auto_start": "shut-up" }'
+vim.g.copilot_node_command = "~/.nvm/versions/node/v18.14.2/bin/node"
 
 local opt = vim.opt
 
@@ -57,5 +59,13 @@ vim.cmd 'autocmd TermOpen * setlocal nonumber norelativenumber nocursorline'
 vim.cmd 'autocmd FileType floaterm nnoremap <silent> <buffer> <esc> :FloatermToggle<CR>'
 vim.cmd 'set shortmess+=c'
 vim.cmd 'set clipboard+=unnamedplus'
+vim.cmd 'set shell=/bin/zsh'
+vim.api.nvim_create_autocmd("TermClose", {
+    callback = function()
+       vim.cmd("close")
+    end
+})
+
+
 -- vim.cmd 'imap <silent><script><expr> <CR> copilot#Accept("\<CR>")'
 -- vim.cmd 'let g:copilot_no_tab_map = v:true'

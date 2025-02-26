@@ -13,6 +13,7 @@ map{'n', '<C-h>', ':lua require("harpoon.mark").add_file()<CR>'}
 map{'n', '<C-l>', ':lua require("harpoon.ui").toggle_quick_menu()<CR>'}
 map{'n', '<gt>', ':lua require("harpoon.ui").nav_next()<CR>'}
 map{'n', '<lt>', ':lua require("harpoon.ui").nav_prev()<CR>'}
+map{'i', 'jk', '<Esc>'}
 
 
 -- Tree
@@ -34,7 +35,7 @@ map{'n', '<space>e',    '<cmd>lua vim.diagnostic.open_float()<CR>'}
 map{'n', '<space>rn',   '<cmd>lua vim.lsp.buf.rename()<CR>'}
 map{'n', '<space>ca',   '<cmd>lua vim.lsp.buf.code_action()<CR>'}
 
-map{'n', '<space>p',   ':split | terminal<CR>'}
+map{'n', '<space>p',   ':split | term <CR>'}
 map{'n', '<space>c',   ':new term://'}
 
 map{'t', '<ESC>', [[<C-\><C-n>]] }

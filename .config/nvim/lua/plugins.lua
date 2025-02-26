@@ -1,12 +1,12 @@
 vim.cmd [[packadd packer.nvim]]
-
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'neovim/nvim-lspconfig'
 	use 'tamago324/nlsp-settings.nvim'
-	use 'williamboman/nvim-lsp-installer'
 
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
@@ -27,8 +27,12 @@ require('packer').startup(function(use)
 
 	use 'tjdevries/colorbuddy.vim'
     use 'Th3Whit3Wolf/onebuddy'
+    use 'bbenzikry/snazzybuddy.nvim'
+    use "olimorris/onedarkpro.nvim"
 	use 'tjdevries/gruvbuddy.nvim'
     use 'prettier/vim-prettier'
+
+    use 'github/copilot.vim'
 
 	use {
 		'windwp/nvim-autopairs',

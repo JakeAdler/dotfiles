@@ -1,8 +1,3 @@
-require'nvim-treesitter.configs'.setup {
-  autotag = {
-    enable = true,
-  }
-}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -70,70 +65,85 @@ local on_attach = function(client, bufnr)
 
 end
 
-local lsp_installer = require("nvim-lsp-installer")
+require("mason").setup()
+require("mason-lspconfig").setup()
 
-lsp_installer.on_server_ready(function(server)
-    if server.name == "jsonls" then
-        server:setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                    filetypes = {"json", "jsonc"},
-                    settings = {
-                        json = {
-                            -- schemas https://www.schemastore.org
-                            schemas = {
-                                {
-                                    filematch = {"package.json"},
-                                    url = "https://json.schemastore.org/package.json"
-                                },
-                                {
-                                    filematch = {"tsconfig*.json"},
-                                    url = "https://json.schemastore.org/tsconfig.json"
-                                },
-                                {
-                                    filematch = {
-                                        ".prettierrc",
-                                        ".prettierrc.json",
-                                        "prettier.config.json"
-                                    },
-                                    url = "https://json.schemastore.org/prettierrc.json"
-                                },
-                                {
-                                    filematch = {".eslintrc", ".eslintrc.json"},
-                                    url = "https://json.schemastore.org/eslintrc.json"
-                                },
-                                {
-                                    filematch = {".babelrc", ".babelrc.json", "babel.config.json"},
-                                    url = "https://json.schemastore.org/babelrc.json"
-                                },
-                                {
-                                    filematch = {"lerna.json"},
-                                    url = "https://json.schemastore.org/lerna.json"
-                                },
-                                {
-                                    filematch = {"now.json", "vercel.json"},
-                                    url = "https://json.schemastore.org/now.json"
-                                },
-                                {
-                                    filematch = {
-                                        ".stylelintrc",
-                                        ".stylelintrc.json",
-                                        "stylelint.config.json"
-                                    },
-                                    url = "http://json.schemastore.org/stylelintrc.json"
-                                }
-                            }
-                        }
-                    }
-                })
-
-    else
-        server:setup({
-            on_attach = on_attach,
-            capabilities = capabilities
-        })
+require("mason-lspconfig").setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {}
     end
+}
+
+
+
+-- local lsp_installer = require("nvim-lsp-installer")
+
+    -- lsp_installer.on_server_ready(function(server)
+    -- if server.name == "jsonls" then
+    --     server:setup({
+    --                 on_attach = on_attach,
+    --                 capabilities = capabilities,
+    --                 filetypes = {"json", "jsonc"},
+    --                 settings = {
+    --                     json = {
+    --                         -- schemas https://www.schemastore.org
+    --                         schemas = {
+    --                             {
+    --                                 filematch = {"package.json"},
+    --                                 url = "https://json.schemastore.org/package.json"
+    --                             },
+    --                             {
+    --                                 filematch = {"tsconfig*.json"},
+    --                                 url = "https://json.schemastore.org/tsconfig.json"
+    --                             },
+    --                             {
+    --                                 filematch = {
+    --                                     ".prettierrc",
+    --                                     ".prettierrc.json",
+    --                                     "prettier.config.json"
+    --                                 },
+    --                                 url = "https://json.schemastore.org/prettierrc.json"
+    --                             },
+    --                             {
+    --                                 filematch = {".eslintrc", ".eslintrc.json"},
+    --                                 url = "https://json.schemastore.org/eslintrc.json"
+    --                             },
+    --                             {
+    --                                 filematch = {".babelrc", ".babelrc.json", "babel.config.json"},
+    --                                 url = "https://json.schemastore.org/babelrc.json"
+    --                             },
+    --                             {
+    --                                 filematch = {"lerna.json"},
+    --                                 url = "https://json.schemastore.org/lerna.json"
+    --                             },
+    --                             {
+    --                                 filematch = {"now.json", "vercel.json"},
+    --                                 url = "https://json.schemastore.org/now.json"
+    --                             },
+    --                             {
+    --                                 filematch = {
+    --                                     ".stylelintrc",
+    --                                     ".stylelintrc.json",
+    --                                     "stylelint.config.json"
+    --                                 },
+    --                                 url = "http://json.schemastore.org/stylelintrc.json"
+    --                             }
+    --                         }
+    --                     }
+    --                 }
+    --             })
+    --
+    -- else
+    --     server:setup({
+    --         on_attach = on_attach,
+    --         capabilities = capabilities
+    --     })
+    -- end
 
     -- this setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
     vim.cmd [[ do user lspattachbuffers ]]
-end)
+-- end)
+

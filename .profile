@@ -53,6 +53,29 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/.local/scripts:$GOPATH/bin"
 
 #}}}
 
+### Functions ###{{{
+
+g() {
+    case "$1" in
+        "config"*)
+            cd "$HOME/.$1"
+            ;;
+        *)
+            echo "Uknown location $1"
+            ;;
+    esac
+}
+
+work_internal(){
+    kitten @ launch --type=window --cwd=/users/jake/Documents/website-v2 zsh -ic "git pull --quiet origin main && echo 'Pulled the latest.'; exec zsh" > /dev/null
+    kitten @ launch --type=window --cwd=/users/jake/Documents/backend-website zsh -ic "git pull --quiet origin master && echo 'Pulled the latest.'; exec zsh" > /dev/null
+    kitten @ launch --type=window --cwd=/users/jake/Documents/data zsh -ic "git pull --quiet origin master && echo 'Pulled the latest.'; exec zsh" > /dev/null
+    kitten @ launch --type=window --cwd=/users/jake/Documents/partner-portal zsh -ic "git pull --quiet origin main && echo 'Pulled the latest.'; exec zsh" > /dev/null
+    kitten @ launch --type=window --keep-focus zsh -i > /dev/null
+}
+
+#}}}
+
 ### Aliases ###{{{
 
 # Configuration (same name)
@@ -63,8 +86,7 @@ alias yarn="yarn --use-yarnrc '$XDG_CONFIG_HOME/yarn/config'"
 alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
 alias polybar="$XDG_CONFIG_HOME/polybar/launch"
 alias tc="trash-put"
-alias ls="ls --color=always --group-directories-first -AHXhp -w 60"
-alias rm="echo 'Use rip instead'"
+alias ls="gls --color=always --group-directories-first -AHXhp -w 60"
 alias rip="rip --graveyard ~/.local/share/Trash"
 
 
@@ -73,6 +95,7 @@ alias jackd="$XDG_CONFIG_HOME/jack/launch"
 alias gparted="devour sudo gparted"
 alias mpd="mpd --no-daemon"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+alias work="work_internal"
 
 # Renames
 alias mail="aerc"
@@ -89,6 +112,7 @@ alias ..="cd .."
 
 # Git
 alias gcm="git commit -m"
+alias gch="git checkout"
 alias gs="git status"
 alias ga="git add"
 
@@ -101,30 +125,9 @@ alias show_album_art="feh /tmp/kunst.jpg"
 
 #}}}
 
-### Functions ###{{{
 
-g() {
-    case "$1" in
-        "config"*)
-            cd "$HOME/.$1"
-            ;;
-        *)
-            echo "Uknown location $1"
-            ;;
-    esac
-}
-#}}}
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-### Startup applications ###
-
-if [ "$0" = "-$(basename $SHELL)" ]; then
-    # Startup programs (only once per login)
-
-    mpd &
-
-    # ssh-agent
-    eval `ssh-agent -s`
-
-    # Run startx on login
-    startx 
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"

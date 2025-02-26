@@ -4,8 +4,6 @@ require'nvim-tree'.setup {
   -- hijack netrw window on startup
   hijack_netrw        = true,
   -- open the tree when running this setup function
-  ignore_ft_on_setup  = {},
-  -- closes neovim automatically when the tree is the last **WINDOW** in the view
   open_on_tab         = false,
   -- hijacks new directory buffers when they are opened.
   hijack_cursor       = false,
@@ -44,17 +42,17 @@ require'nvim-tree'.setup {
     -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
     width = 32,
     -- height of the window, can be either a number (columns) or a string in `%`, for top or bottom side placement
-    hide_root_folder = false,
+    -- hide_root_folder = false,
     -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
     side = 'left',
     -- if true the tree will resize itself after opening a file
-    mappings = {
+    -- mappings = {
       -- custom only false will merge the list with the default mappings
       -- if true, it will only use your list to set the mappings
-      custom_only = false,
+      -- custom_only = false,
       -- list of mappings to set on the tree manually
-      list = {}
-    }
+      -- list = {}
+    -- }
   }
 }
 
